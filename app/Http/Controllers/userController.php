@@ -122,6 +122,6 @@ class UserController  extends Controller
             ->select('id', 'name', 'email')
             ->where('id', $user_id)
             ->first();
-        return view('users.info', compact('users'));
+        return view('users.info', compact('user'));
     }
 }

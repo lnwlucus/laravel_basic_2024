@@ -23,8 +23,8 @@ class ProductController extends Controller
 
     public function form()
     {
-        $productTypes = ProductType::orderBy('name','asc')->get();
-        return view('product.form',compact('productTypes'));
+        $productTypes = ProductType::orderBy('name', 'asc')->get();
+        return view('product.form', compact('productTypes'));
     }
 
     public function save(Request $request)
@@ -41,9 +41,9 @@ class ProductController extends Controller
     {
         try {
             $product = Product::find($id);
-            $productTypes = ProductType::orderBy('name','asc')->get();
+            $productTypes = ProductType::orderBy('name', 'asc')->get();
 
-            return view('product.form', compact('product','productTypes'));
+            return view('product.form', compact('product', 'productTypes'));
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -135,5 +135,17 @@ class ProductController extends Controller
         $priceAvg = Product::avg('price');
 
         return view('product.max-min-count-avg', compact('priceMax', 'priceMin', 'priceCount', 'priceAvg'));
+    }
+
+    public function productTypeList()
+    {
+        $productTypes  = ProductType::orderBy('name', 'asc')->get();
+        return view('product.product-type-list', compact('productTypes'));
+    }
+
+    public function listByProductType($productTypeId)
+    {
+        $productType = ProductType::find($productTypeId);
+        return view('product.list-by-product-type', compact('productType'));
     }
 }

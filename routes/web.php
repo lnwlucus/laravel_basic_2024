@@ -7,7 +7,7 @@ use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ProductTypeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -128,3 +128,9 @@ Route::get('/product-price-between', [ProductController::class, 'priceBetween'])
 Route::get('/product-price-not-between', [ProductController::class, 'priceNotBetween']);
 Route::get('/product-price-in', [ProductController::class, 'priceIn']);
 Route::get('/product-price-max-min-count-avg', [ProductController::class, 'priceMaxMinCountAvg']);
+
+Route::get('/product-type-list', [ProductController::class, 'productTypeList']);
+Route::get('/list-by-product-type/{productTypeId}', [ProductController::class, 'listByProductType']);
+
+//LiveWire
+Route::get('/product-type/list', [ProductTypeController::class, 'index']);
